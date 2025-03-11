@@ -16,11 +16,10 @@ jobs:
           EC2_USER: "ec2-user"
         run: |
           echo "$SSH_KEY" > key.pem
-          chmod 400 key.pem 
+          chmod 400 key.pem
           ssh -o StrictHostKeyChecking=no -i key.pem $EC2_USER@$EC2_HOST '
             cd my-devops-app &&
             git pull origin main &&
             npm install &&
             pm2 restart my-app -f || pm2 start index.js --name my-app -f
-          '
           '
